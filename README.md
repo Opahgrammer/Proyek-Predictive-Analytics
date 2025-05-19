@@ -30,13 +30,13 @@ Tujuan dari analisis ini adalah:
 - Membangun model regresi sederhana (jika diperlukan) untuk memprediksi harga harian berdasarkan waktu pemesanan dan durasi menginap.Memberikan rekomendasi praktis bagi konsumen dan manajemen hotel berdasarkan hasil analisis tren harga.
 
 ## Data Understanding
-## Informasi Dataset
+**Informasi Dataset**
 
 Dataset **Hotel Booking Demand** digunakan untuk menganalisis dan memprediksi pola pemesanan hotel. Dataset ini memuat informasi terkait pemesanan dari dua jenis hotel (Resort Hotel dan City Hotel), serta mencakup atribut seperti tanggal pemesanan, durasi menginap, jumlah tamu, tipe kamar, harga harian (ADR), total biaya, dan status pembatalan. Dataset ini sangat relevan untuk pengembangan model prediksi harga dan analisis perilaku pelanggan di industri perhotelan.
 
 Dataset ini berasal dari situs **Kaggle**, dan telah banyak digunakan dalam penelitian serta kompetisi data science karena kelengkapan dan kompleksitas fitur-fiturnya.
 
-### Tabel Informasi Dataset
+**Tabel Informasi Dataset**
 
 | Jenis         | Keterangan                                                                                      |
 |---------------|-------------------------------------------------------------------------------------------------|
@@ -85,7 +85,7 @@ Dataset ini berasal dari situs **Kaggle**, dan telah banyak digunakan dalam pene
 | `reservation_status_date`     | Tanggal ketika status reservasi ditentukan.                                     |
 
 
-## Eksplorasi Data Awal (EDA) - Struktur Dataset
+### Eksplorasi Data Awal (EDA) - Struktur Dataset
 
 Berikut adalah informasi awal mengenai struktur dataset Hotel Booking Demand berdasarkan hasil `df.info()`:
 
@@ -124,7 +124,7 @@ Berikut adalah informasi awal mengenai struktur dataset Hotel Booking Demand ber
 | 31 | reservation_status             | 119,390        | object    | Status reservasi akhir (Check-Out, dll)     |
 | 32 | reservation_status_date        | 119,390        | object    | Tanggal status reservasi ditentukan         |
 
-### Catatan:
+**Catatan:**
 - Beberapa kolom memiliki nilai **missing** (null), seperti:
   - `children` (4 nilai kosong)
   - `country` (~488 nilai kosong)
@@ -172,7 +172,7 @@ Fungsi describe() memberikan informasi statistik pada masing-masing kolom, antar
 |--------------|--------------|
 | 119390       | 32           |
 
-## EDA Missing Values & Outlier
+### EDA Missing Values & Outlier
 Mengecek missing values, Duplikat dan data yang dianggap tidak memiliki kontribusi yang signifikan terhadap tujuan atau rumusan masalah
 - Data duplikat
   
@@ -180,7 +180,7 @@ Mengecek missing values, Duplikat dan data yang dianggap tidak memiliki kontribu
 |---------------|
 | 31994         |
 
-## 📌 Pengecekan Missing Values
+**Pengecekan Missing Values**
 
 Berikut adalah jumlah nilai yang hilang (missing values) untuk setiap kolom:
 
@@ -221,7 +221,7 @@ Berikut adalah jumlah nilai yang hilang (missing values) untuk setiap kolom:
 
 ---
 
-## Data Setelah Penghapusan Kolom Tidak Relevan
+**Data Setelah Penghapusan Kolom Tidak Relevan**
 
 **Bentuk DataFrame:**
 
@@ -247,7 +247,7 @@ Berikut adalah jumlah nilai yang hilang (missing values) untuk setiap kolom:
 
 ---
 
-## Kolom yang Dihapus dan Alasannya
+**Kolom yang Dihapus dan Alasannya**
 
 Berikut adalah kolom-kolom yang dianggap tidak relevan untuk analisis fokus **waktu pemesanan dan durasi menginap terhadap harga**:
 
@@ -273,10 +273,11 @@ Berikut adalah kolom-kolom yang dianggap tidak relevan untuk analisis fokus **wa
 
 ---
 
-** Total Data Setelah Pembersihan:**
-- **Ukuran DataFrame:** `(87396, 12)`
+**Total Data Setelah Pembersihan:**
 
-## Mengecek dan Menangani Outlier dengan IQR Method
+**Ukuran DataFrame:** `(87396, 12)`
+
+**Mengecek dan Menangani Outlier dengan IQR Method**
 
 ![image](https://github.com/user-attachments/assets/4997f947-8b72-48ce-91c2-fa771da2b6e3)
 ![image](https://github.com/user-attachments/assets/b992e1a4-014d-4bbb-8ef4-f8fbf42fdfe3)
@@ -291,20 +292,22 @@ Total data setelah penghapusan outlier:
 |--------------|--------------|
 | 81186        | 12           |
 
-## Exploratory Data Analysis - Univariate Analysis
+### Exploratory Data Analysis - Univariate Analysis
 - Analisis univariat adalah jenis analisis statistik yang mengamati dan menjelaskan satu variabel pada suatu waktu. Tujuannya adalah untuk mendeskripsikan data tersebut, meringkasnya, dan mencari pola-pola yang ada dalam satu variabel tersebut.
-### Fitur kategori
+
+**Fitur kategori**
+  
 ![image](https://github.com/user-attachments/assets/69ae2924-d2d6-48c3-933b-4a0e9d2ffba5)
 
 
-##### hotel                                      
+**hotel**                                      
 - City Hotel            53428           61.13
 - Resort Hotel          33968           38.87
 
 ![image](https://github.com/user-attachments/assets/0b0bece8-8d35-4825-9bb4-f7b3b2b0e4da)
 
 
-##### arrival_date_month                               
+**arrival_date_month**                            
 - August                      11257           12.88
 - July                        10057           11.51
 - May                          8355            9.56
@@ -322,7 +325,7 @@ Total data setelah penghapusan outlier:
 ![image](https://github.com/user-attachments/assets/9f622ffc-f1ef-4f24-a9a5-fb531b4d2d93)
 
 
-##### meal                                    
+**meal**                                    
 - BB                 67978           77.78
 - SC                  9481           10.85
 - HB                  9085           10.40
@@ -331,7 +334,7 @@ Total data setelah penghapusan outlier:
 
 ![image](https://github.com/user-attachments/assets/373ee402-bf1d-420c-8d40-a68520271a37)
 
-##### market_segment                               
+**market_segment**                               
 - Online TA               51618           59.06
 - Offline TA/TO           13889           15.89
 - Direct                  11804           13.51
@@ -343,13 +346,14 @@ Total data setelah penghapusan outlier:
 
 ![image](https://github.com/user-attachments/assets/83ae2507-de4f-424a-a7d3-10b8eeeda664)
 
-##### customer_type                                 
+**customer_type**                                 
 - Transient                71986           82.37
 - Transient-Party          11727           13.42
 - Contract                  3139            3.59
 - Group                      544            0.62
 
-### Fitur Numerik
+**Fitur Numerik**
+
 ![image](https://github.com/user-attachments/assets/6ede20c0-74c1-4ed2-95a6-a2d3cd533c60)
 Dari beberapa visualisasi diatas dapat disimpulkan sebagai berikut:
 
@@ -372,8 +376,8 @@ Dari beberapa visualisasi diatas dapat disimpulkan sebagai berikut:
 - Distribusi `adr` **cukup normal** dengan rata-rata sekitar **100**, namun memiliki **ekor kanan (right-skewed)**.
 - Beberapa nilai `adr` sangat tinggi (di atas **200**), kemungkinan merupakan **outlier** atau pemesanan dalam kondisi spesial seperti **event atau high season**.
 
-## Exploratory Data Analysis - Multivariate Analysis
-### Fitur Numerik
+### Exploratory Data Analysis - Multivariate Analysis
+**Fitur Numerik**
 ![image](https://github.com/user-attachments/assets/ff75dfdd-5100-4aa6-bc16-2e99cca94970)
 Berdasarkan hasil visualisasi matriks korelasi yang ditampilkan, diperoleh beberapa hubungan penting antar fitur numerik sebagai berikut:
 
@@ -423,6 +427,7 @@ Dari hasil visualisasi tersebut dapat disimpulkan:
 - Pola musiman ini penting untuk strategi penetapan harga dan promosi sesuai segmen pasar dan waktu kedatangan tamu.
 
 ![image](https://github.com/user-attachments/assets/7f06f039-c23b-45ac-847e-b5c84b7d02dc)
+
 Dari visualisasi tersebut dapat dijelaskan:
 
 - Plot menunjukkan hubungan antara Lead Time (jumlah hari sebelum kedatangan) dengan Harga Harian Rata-rata (ADR).
@@ -456,7 +461,7 @@ Dari visualisasi tersebut dapat dijelaskan:
 
 Singkatnya, total biaya meningkat seiring lama menginap, namun kenaikan biaya tidak selalu linear, bisa ada penyesuaian harga untuk lama menginap yang lebih panjang.
 
-### Fitur Kategorik
+**Fitur Kategorik**
 ![image](https://github.com/user-attachments/assets/94719373-3677-445a-a68d-c3983f411b78)
 Visualisasi tersebut menunjukkan rata-rata harga harian (ADR) hotel per bulan berdasarkan jenis hotel (City Hotel vs Resort Hotel).
 
@@ -481,36 +486,83 @@ Teknik Data preparation yang dilakukan terdiri dari:
 - Reduksi dimensi dengan PCA
 - Pembagian dataset dengan fungsi train_test_split dari library sklearn.
 
-### Encoding Fitur Kategori
-![image](https://github.com/user-attachments/assets/99b07a0f-576c-4e47-81fc-11d141bd60f3)
-- Dari hasil output diatas Fitur Customer_type diubah menggunakan LabelEncoder
-![image](https://github.com/user-attachments/assets/b758f077-01cd-4c29-a8b8-5a1c6310dba3)
-- Fitur hotel, meal, market segment, arrival_date_month diubah menggunakan One-Hot Encoder
-### Reduksi dimensi dengan PCA
-![image](https://github.com/user-attachments/assets/0663ba06-9852-4336-9b63-dc43cfe6f79f)
-### Standarisasi
-![image](https://github.com/user-attachments/assets/1d2e14af-ec43-434a-b77d-868da459335c)
-#### Fitur Numerik yang Dinormalisasi
-Fitur-fitur yang dinormalisasi meliputi:
-- lead_time (waktu antara reservasi dan tanggal kedatangan),
-- arrival_date_year (tahun kedatangan),
-- arrival_date_week_number (minggu ke berapa dalam tahun),
-- arrival_date_day_of_month (hari kedatangan dalam bulan),
-- customer_type_encoded (tipe pelanggan yang sudah diencoding secara numerik),
-- stay_combined (fitur gabungan durasi inap, hasil rekayasa fitur),
-- arrival_month_pca (hasil PCA dari fitur bulan kedatangan),
-- market_segment_pca (hasil PCA dari segmen pasar),
-- meal_pca (hasil PCA dari jenis meal plan).
-- 
+**Encoding Fitur Kategori**
+pada dataset kita terdapat 2 fitur categorical yang akan diubah menjadi data numerik yaitu:
+- Fitur customer_type diubah menjadi format numerik menggunakan LabelEncoder karena model machine learning tidak bisa memproses data kategorikal dalam bentuk string. Setiap jenis pelanggan dikonversi menjadi angka (misal: Contract → 0, Group → 1, dst.) agar bisa digunakan dalam pelatihan model.
+- Fitur-fitur kategorikal non-ordinal seperti `hotel`, `meal`, `market_segment`, dan `arrival_date_month` diubah menggunakan *One-Hot Encoding* karena tidak memiliki urutan nilai yang bermakna. Dengan `pd.get_dummies()`, setiap kategori dibuat menjadi kolom biner (0 atau 1), sehingga informasi kategori tetap dipertahankan tanpa memberikan bobot urutan yang salah. Hasilnya disimpan dalam `df_final` dan siap digunakan untuk pelatihan model.
+
+Fitur kategorikal perlu diubah karena model machine learning hanya dapat memproses data numerik. Jika tidak diubah, nilai kategori dalam bentuk teks tidak akan bisa dikenali atau digunakan dalam proses pelatihan model.
+
+**Reduksi dimensi dengan PCA**
+
+teknik PCA digunakan untuk mereduksi variabel asli menjadi sejumlah kecil variabel baru yang tidak berkorelasi linier, disebut komponen utama (PC). Komponen utama ini dapat menangkap sebagian besar varians dalam variabel asli. Sehingga, saat teknik PCA diterapkan pada data, ia hanya akan menggunakan komponen utama dan mengabaikan sisanya.
+
+![image](https://github.com/user-attachments/assets/1de98b5b-e9ab-47c0-9218-71f30a5c7055)
+
+Visualisasi tersebut menunjukkan korelasi antara komponen hasil PCA dan variabel target (adr dan total_cost). Berikut poin-poin pentingnya:
+- stay_combined memiliki korelasi kuat positif (0.76) terhadap total_cost, artinya semakin lama menginap, biaya total semakin tinggi.
+- market_segment_pca memiliki korelasi moderat terhadap adr (0.27) dan total_cost (0.24), menunjukkan bahwa tipe segmentasi pasar berpengaruh terhadap harga dan biaya.
+- Komponen lain seperti arrival_month_pca dan meal_pca memiliki korelasi yang lemah, sehingga pengaruhnya terhadap adr dan total_cost relatif kecil.
+
+**Train-Test-Split**
+
+Pembagian Data untuk Model Prediksi
+Sebelum melakukan train-test-split, langkah awalnya adalah memisahkan antara fitur (predictor) dan label (target) yang ingin diprediksi.
+- Variabel **X** digunakan untuk menyimpan fitur yang terdiri dari seluruh kolom pada dataset kecuali kolom target yaitu `adr` (Average Daily Rate), `total_cost` (total biaya menginap), serta kolom `customer_type` karena sudah diwakili oleh kolom `customer_type_encoded`.
+- Variabel **y_adr** digunakan untuk menyimpan label pertama yaitu harga hotel per malam (`adr`).
+- Variabel **y_cost** digunakan untuk menyimpan label kedua yaitu total biaya menginap (`total_cost`).
+Selanjutnya, dilakukan pemisahan data menjadi data latih (train) dan data uji (test) menggunakan fungsi `train_test_split` dari sklearn dengan pembagian data sebesar 80:20 (80% untuk data latih dan 20% untuk data uji). Parameter `random_state=42` digunakan untuk memastikan bahwa pembagian data ini dapat direproduksi.
+Untuk prediksi harga hotel (`adr`), dari total dataset, data terbagi menjadi 80% untuk data latih dan 20% untuk data uji dengan bentuk sebagai berikut:
+- Data latih `X_train_adr` dan `y_train_adr` berisi fitur dan label untuk melatih model.
+- Data uji `X_test_adr` dan `y_test_adr` berisi fitur dan label untuk menguji performa model.
+Hal yang sama juga dilakukan untuk target kedua yaitu total biaya menginap (`total_cost`), dengan pembagian data latih dan uji yang serupa.
+
+**Standarisasi Data**
+
+Algoritma machine learning memiliki performa lebih baik dan konvergen lebih cepat ketika dimodelkan pada data dengan skala relatif sama atau mendekati distribusi normal. Proses scaling dan standarisasi membantu untuk membuat fitur data menjadi bentuk yang lebih mudah diolah oleh algoritma.
+Selanjutnya dilakukan standarisasi dengan **MinMaxScaler** pada 9 fitur numerik, yaitu:
+
+- `lead_time`
+- `arrival_date_year`
+- `arrival_date_week_number`
+- `arrival_date_day_of_month`
+- `customer_type_encoded`
+- `stay_combined`
+- `arrival_month_pca`
+- `market_segment_pca`
+- `meal_pca`
+
+Standarisasi dilakukan secara **terpisah** untuk dua target prediksi:
+
+1. **Prediksi Harga Hotel (ADR)**
+    - Skala dihitung berdasarkan data latih (`X_train_adr`).
+    - Transformasi kemudian diterapkan ke `X_train_adr` dan `X_test_adr`.
+
+2. **Prediksi Total Biaya Menginap (Total Cost)**
+    - Skala dihitung berdasarkan data latih (`X_train_cost`).
+    - Transformasi kemudian diterapkan ke `X_train_cost` dan `X_test_cost`.
+
+Proses **MinMaxScaler** menghasilkan distribusi data dengan rentang nilai antara **0 dan 1**, membuat algoritma machine learning lebih efisien dalam proses pelatihan.
+
+**Jadi, mengapa perlu dilakukan data preparation?**
+
+- **Encoding** diperlukan untuk mengubah data kategori menjadi format numerik, karena sebagian besar algoritma machine learning tidak dapat bekerja langsung dengan data non-numerik.
+  
+- **Reduksi dimensi** (seperti PCA) berguna untuk menyederhanakan representasi data, mempercepat pelatihan model, serta mengurangi risiko overfitting dan multikolinearitas.
+
+- **Split data** ke dalam set pelatihan dan pengujian memungkinkan evaluasi performa model terhadap data yang belum pernah dilihat sebelumnya, memberikan gambaran nyata tentang kemampuan generalisasi model.
+
+- **Standarisasi** memastikan fitur berada pada skala yang sama, meningkatkan efisiensi dan efektivitas algoritma dalam menemukan pola dalam data.
+
 ## Modeling
-### XGBoost MultiOutputRegressor
+**XGBoost MultiOutputRegressor**
 Untuk memprediksi dua target sekaligus, yaitu adr (Average Daily Rate) dan total_cost, digunakan MultiOutputRegressor yang membungkus model dasar XGBRegressor. Pendekatan ini memungkinkan model melakukan regresi multi-target secara bersamaan.
 
 - Data fitur (X) dan target (adr dan total_cost) dipisah menjadi data latih dan uji menggunakan train_test_split.
 - Model kemudian dilatih (fit) pada data latih dengan dua target output secara paralel.
 - Model ini memanfaatkan kekuatan XGBoost yang efisien dan akurat untuk regresi pada masing-masing target secara independen dalam satu pipeline.
 
-### Model Multi-Output Regression dengan Random Forest
+**Model Multi-Output Regression dengan Random Forest**
 Tahapan yang dilakukan:
 - Definisi Model Dasar
 Model regresi berbasis Random Forest dibuat dengan RandomForestRegressor(random_state=42) untuk menjaga hasil yang reproducible.
@@ -524,71 +576,52 @@ Model multi-output dilatih dengan data latih menggunakan fit(), sehingga model b
 
 
 ## Evaluation
-### Evaluasi Model dengan Mean Squared Error (MSE)
-Setelah model Random Forest Multi-Output Regressor selesai dilatih, dilakukan evaluasi performa model pada data uji (X_test_multi) dengan langkah-langkah berikut:
-- Prediksi pada Data Uji
-Model digunakan untuk memprediksi nilai target adr dan total_cost pada data uji dengan predict().
-- Perhitungan Mean Squared Error (MSE)
-MSE dihitung secara terpisah untuk masing-masing target:
-mse_adr_rf: MSE untuk prediksi adr.
-mse_cost_rf: MSE untuk prediksi total_cost.
-- MSE mengukur rata-rata kuadrat selisih antara nilai sebenarnya dan prediksi model. Nilai MSE yang lebih kecil menunjukkan model dengan performa yang lebih baik.
+Metrik evaluasi yang digunakan dalam analisis ini adalah Mean Squared Error (MSE), yang berfungsi untuk mengukur seberapa besar kesalahan antara nilai aktual dan nilai yang diprediksi oleh model. MSE dihitung dengan cara mengkuadratkan selisih antara nilai aktual dan nilai prediksi, kemudian menghitung rata-ratanya.
 
-### Evaluasi Model XGBoost Multi-Output Regression
-Setelah model XGBoost Multi-Output Regressor dilatih, evaluasi performa dilakukan dengan langkah-langkah berikut:
+Formula Mean Squared Error:
+![image-21](https://github.com/user-attachments/assets/8dc69f20-510b-4be2-aeed-29d116943f7d)
 
-- Prediksi pada Data Uji
-Model digunakan untuk memprediksi kedua target, adr dan total_cost, pada data uji (X_test_multi) menggunakan method predict().
-- Perhitungan Mean Squared Error (MSE)
-MSE dihitung secara terpisah untuk masing-masing target:
-mse_adr_xgb untuk prediksi adr.
-mse_cost_xgb untuk prediksi total_cost.
-MSE mengukur rata-rata kuadrat kesalahan antara nilai asli dan hasil prediksi model. Nilai MSE yang lebih rendah menunjukkan performa model yang lebih baik.
-- Pelaporan Hasil Evaluasi
-Nilai MSE untuk masing-masing target ditampilkan sebagai metrik evaluasi model.
+Mean Squared Error (MSE) digunakan untuk menghitung rata-rata dari kuadrat selisih antara nilai prediksi model dengan nilai sebenarnya (ground truth).
+Rumus MSE dapat dilihat pada gambar di atas, dengan penjelasan sebagai berikut:
+- **N** menyatakan jumlah data dalam dataset,
+- **yi** merupakan nilai aktual,
+- **y_pred** adalah nilai hasil prediksi model.
 
-![image](https://github.com/user-attachments/assets/ee7bb8a5-c6a8-4470-8279-313dd877d569)
-Grafik di atas menunjukkan perbandingan nilai Mean Squared Error (MSE) antara dua model machine learning, yaitu **Random Forest** dan **XGBoost**, terhadap dua target prediksi: **ADR (Average Daily Rate)** dan **Total Cost**.
+**Evaluasi Model Machine Learning**
+- Berikut adalah hasil yang diperoleh dari metrik ini, diurutkan dari kesalahan terkecil hingga terbesar:
+  
+| Model       | Train Error (MSE) | Test Error (MSE) |
+|-------------|------------------:|-----------------:|
+| RF          |        283.658147 |      1519.951410 |
+| boosting_RF |       1227.285113 |      1513.729068 |
 
-- Baik model Random Forest maupun XGBoost menghasilkan nilai MSE yang relatif rendah untuk prediksi ADR, yaitu sekitar 330.
-- Namun, untuk prediksi Total Cost, kedua model menunjukkan nilai MSE yang jauh lebih tinggi, yaitu sekitar 2700.
-- Hal ini menunjukkan bahwa kedua model lebih akurat dalam memprediksi ADR dibandingkan Total Cost.
+![image](https://github.com/user-attachments/assets/a07b1841-0ba8-410b-96db-e5bacfc05668)
 
-Secara umum, performa kedua model cukup sebanding, dengan XGBoost sedikit lebih baik dalam prediksi Total Cost berdasarkan nilai MSE yang sedikit lebih rendah.
+| y_true_adr | y_true_cost | prediksi_RF_adr | prediksi_RF_cost | prediksi_XGB_adr | prediksi_XGB_cost |
+|------------|-------------|------------------|-------------------|-------------------|--------------------|
+| 145.87     | 437.61      | 154.2            | 460.3             | 136.300003        | 392.500000         |
+| 108.20     | 216.40      | 91.4             | 218.5             | 99.199997         | 205.199997         |
+| 152.10     | 608.40      | 131.4            | 533.8             | 129.899994        | 506.700012         |
+| 156.67     | 470.01      | 136.7            | 407.5             | 145.000000        | 453.100006         |
+| 58.00      | 174.00      | 51.6             | 151.4             | 46.900002         | 140.899994         |
 
-# Perbandingan Model Multi-Output Regression
+Dari tabel di atas, dapat dilihat bahwa setiap model memberikan hasil prediksi yang berbeda untuk nilai aktual adr dan total_cost. Model Random Forest dan XGBoost menunjukkan kemampuan yang cukup baik dalam memperkirakan kedua target tersebut.
 
-## 1. Random Forest Multi-Output Regression
+Misalnya, pada baris pertama, nilai aktual adr adalah 145.87, sementara prediksi dari Random Forest adalah 154.2 dan XGBoost 136.3. Ini menunjukkan bahwa kedua model memiliki deviasi prediksi yang masih dalam batas wajar. Untuk total_cost, nilai aktualnya 437.61, dan hasil prediksi dari Random Forest adalah 460.3, sedangkan XGBoost memprediksi 392.5.
 
-**Kelebihan:**
+Secara umum, model Random Forest cenderung sedikit overestimasi, sedangkan model XGBoost cenderung underestimasi pada beberapa kasus, tetapi selisihnya tidak terlalu signifikan, yang menunjukkan performa prediktif yang stabil. Konsistensi model ini menunjukkan bahwa hubungan antara fitur-fitur seperti waktu kedatangan, durasi inap, jenis hotel, dan jumlah tamu berhasil ditangkap oleh model dengan baik.
 
-- Robust terhadap overfitting: Dengan banyak pohon keputusan, model ini cenderung lebih stabil dan tahan terhadap overfitting.
-- Mudah diinterpretasi: Fitur penting (feature importance) dapat diekstrak untuk analisis.
-- Tidak membutuhkan scaling fitur: Random Forest bekerja baik dengan fitur dalam skala asli tanpa perlu normalisasi.
-- Cepat dalam pelatihan untuk dataset berukuran sedang.
+**Kesimpulan**
 
-**Kekurangan:**
+Dari hasil analisis dan evaluasi yang telah dilakukan, dapat disimpulkan bahwa model yang dikembangkan berhasil menjawab dua rumusan masalah utama secara efektif:
 
-- Kurang efisien pada dataset sangat besar: Bisa menjadi lambat dan boros memori saat jumlah data dan fitur sangat besar.
-- Tidak optimal untuk fitur numerik yang sangat berkorelasi: Bisa mempengaruhi performa jika banyak fitur saling bergantung.
-- Performa bisa lebih rendah dibanding model boosting seperti XGBoost pada beberapa kasus.
+Kapan waktu terbaik untuk memesan hotel agar mendapatkan harga terbaik?
+Berdasarkan analisis multivariat dan evaluasi model, ditemukan bahwa faktor waktu kedatangan (diwakili oleh komponen PCA dari bulan kedatangan) memiliki pengaruh terhadap harga kamar per malam (adr). Korelasi negatif antara arrival_month_pca dan adr menunjukkan bahwa pemesanan hotel pada bulan-bulan tertentu, seperti Januari, Februari, atau November (yang cenderung merupakan musim sepi), dapat memberikan harga lebih murah. Oleh karena itu, waktu terbaik untuk memesan hotel adalah di luar musim liburan atau high season.
 
----
+Berapa lama idealnya menginap untuk mengoptimalkan biaya?
+Durasi inap, yang direpresentasikan sebagai stay_combined, memiliki korelasi sangat tinggi terhadap total_cost, namun tidak terlalu memengaruhi adr. Artinya, semakin lama menginap, semakin besar total biaya, namun harga per malam tidak mengalami penurunan signifikan. Maka, durasi ideal menginap adalah sekitar 2 hingga 4 malam, di mana biaya masih dalam batas efisien, dan pengalaman menginap tetap optimal.
 
-## 2. XGBoost Multi-Output Regression
 
-**Kelebihan:**
-
-- Performa tinggi dan presisi: Algoritma boosting yang secara iteratif memperbaiki kesalahan prediksi sehingga sering menghasilkan akurasi lebih baik.
-- Fleksibel dan dapat disesuaikan: Banyak parameter tuning untuk optimasi performa model.
-- Dukungan built-in regularisasi: Membantu mencegah overfitting lebih efektif.
-- Mampu menangani data dengan fitur numerik dan kategorikal secara efisien.
-
-**Kekurangan:**
-
-- Proses pelatihan lebih lambat dibanding Random Forest: Karena model dibangun secara berurutan (boosting).
-- Lebih kompleks dalam tuning hyperparameter: Membutuhkan eksperimen dan pemahaman lebih dalam.
-- Membutuhkan normalisasi atau preprocessing fitur yang lebih hati-hati agar performa optimal.
 
 
 ## Referensi
