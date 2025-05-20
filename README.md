@@ -172,6 +172,7 @@ Fungsi describe() memberikan informasi statistik pada masing-masing kolom, antar
 |--------------|--------------|
 | 119390       | 32           |
 
+## Data Preparation
 ### EDA Missing Values & Outlier
 Mengecek missing values, Duplikat dan data yang dianggap tidak memiliki kontribusi yang signifikan terhadap tujuan atau rumusan masalah
 - Data duplikat
@@ -479,15 +480,7 @@ Kesimpulan:
 
 - Untuk City Hotel, fluktuasi harga tidak terlalu besar, lebih cocok untuk perjalanan bisnis yang fleksibel.
 
-## Data Preparation
-Teknik Data preparation yang dilakukan terdiri dari:
-- Label Encoding
-- One-Hot Encoding
-- Reduksi dimensi dengan PCA
-- Pembagian dataset dengan fungsi train_test_split dari library sklearn.
-
 **Encoding Fitur Kategori**
-pada dataset kita terdapat 2 fitur categorical yang akan diubah menjadi data numerik yaitu:
 - Fitur customer_type diubah menjadi format numerik menggunakan LabelEncoder karena model machine learning tidak bisa memproses data kategorikal dalam bentuk string. Setiap jenis pelanggan dikonversi menjadi angka (misal: Contract → 0, Group → 1, dst.) agar bisa digunakan dalam pelatihan model.
 - Fitur-fitur kategorikal non-ordinal seperti `hotel`, `meal`, `market_segment`, dan `arrival_date_month` diubah menggunakan *One-Hot Encoding* karena tidak memiliki urutan nilai yang bermakna. Dengan `pd.get_dummies()`, setiap kategori dibuat menjadi kolom biner (0 atau 1), sehingga informasi kategori tetap dipertahankan tanpa memberikan bobot urutan yang salah. Hasilnya disimpan dalam `df_final` dan siap digunakan untuk pelatihan model.
 
