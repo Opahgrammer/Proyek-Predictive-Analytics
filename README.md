@@ -85,7 +85,7 @@ Dataset ini berasal dari situs **Kaggle**, dan telah banyak digunakan dalam pene
 | `reservation_status_date`     | Tanggal ketika status reservasi ditentukan.                                     |
 
 
-### Eksplorasi Data Awal (EDA) - Struktur Dataset
+### Struktur Dataset
 
 Berikut adalah informasi awal mengenai struktur dataset Hotel Booking Demand berdasarkan hasil `df.info()`:
 
@@ -172,83 +172,68 @@ Fungsi describe() memberikan informasi statistik pada masing-masing kolom, antar
 |--------------|--------------|
 | 119390       | 32           |
 
-## Data Preparation
-### EDA Missing Values & Outlier
-Mengecek missing values, Duplikat dan data yang dianggap tidak memiliki kontribusi yang signifikan terhadap tujuan atau rumusan masalah
-- Data duplikat
+**Data duplikat**
   
 | Data Duplikat |
 |---------------|
 | 31994         |
 
-**Pengecekan Missing Values**
+### Explore Data
 
-Berikut adalah jumlah nilai yang hilang (missing values) untuk setiap kolom:
+![image](https://github.com/user-attachments/assets/3f2f5bcd-6f9f-4650-8b09-f4889cdbe1fa)
 
-| Kolom                            | Jumlah Missing |
-|----------------------------------|----------------|
-| hotel                            | 0              |
-| is_canceled                      | 0              |
-| lead_time                        | 0              |
-| arrival_date_year                | 0              |
-| arrival_date_month               | 0              |
-| arrival_date_week_number         | 0              |
-| arrival_date_day_of_month        | 0              |
-| stays_in_weekend_nights          | 0              |
-| stays_in_week_nights             | 0              |
-| adults                           | 0              |
-| children                         | 4              |
-| babies                           | 0              |
-| meal                             | 0              |
-| country                          | 452            |
-| market_segment                   | 0              |
-| distribution_channel             | 0              |
-| is_repeated_guest                | 0              |
-| previous_cancellations           | 0              |
-| previous_bookings_not_canceled   | 0              |
-| reserved_room_type               | 0              |
-| assigned_room_type               | 0              |
-| booking_changes                  | 0              |
-| deposit_type                     | 0              |
-| agent                            | 12,193         |
-| company                          | 82,137         |
-| days_in_waiting_list             | 0              |
-| customer_type                    | 0              |
-| adr                              | 0              |
-| required_car_parking_spaces      | 0              |
-| total_of_special_requests        | 0              |
-| reservation_status               | 0              |
-| reservation_status_date          | 0              |
+**1. Hotel**
+Dataset terdiri dari dua jenis hotel, yaitu:
+- **City Hotel** sebanyak **79.330** sampel (**66,45%**), menunjukkan mayoritas data berasal dari hotel yang berada di area perkotaan.
+- **Resort Hotel** sebanyak **40.060** sampel (**33,55%**), menunjukkan proporsi yang lebih kecil dibanding City Hotel.
+  
+---
+![image](https://github.com/user-attachments/assets/8612f8bc-7b7d-4a25-ac28-a5c908c6e16a)
+
+**2. Arrival Date Month**
+Distribusi kedatangan tamu berdasarkan bulan menunjukkan pola musiman yang cukup jelas:
+- Bulan **Agustus (11,62%)**, **Juli (10,60%)**, dan **Mei (9,88%)** merupakan bulan dengan jumlah kedatangan tertinggi.
+- Sementara bulan dengan jumlah kedatangan terendah adalah **Januari (4,97%)**, **Desember (5,68%)**, dan **November (5,69%)**.
+
+---
+![image](https://github.com/user-attachments/assets/956f3f45-31e2-4dd4-bb7a-ad5363e3f227)
+
+**3. Meal**
+Tipe paket makan yang paling umum dipesan oleh tamu adalah:
+- **BB (Bed & Breakfast)** sebanyak **92.310** sampel (**77,32%**), menunjukkan bahwa sebagian besar tamu memilih paket menginap dengan sarapan.
+- Diikuti oleh **HB (Half Board)** sebanyak **14.463** sampel (**12,11%**) dan **SC (Self Catering)** sebanyak **10.650** sampel (**8,92%**).
+- Kategori **Undefined** dan **FB (Full Board)** sangat sedikit, menunjukkan pilihan yang jarang digunakan.
 
 ---
 
-**Data Setelah Penghapusan Kolom Tidak Relevan**
+![image](https://github.com/user-attachments/assets/a44ca117-88d2-446a-adee-69d6ea75cb4a)
 
-**Bentuk DataFrame:**
-
-- Jumlah Baris: `87,396`
-- Jumlah Kolom: `12`
-
-**Informasi Kolom yang Tersisa:**
-
-| No | Kolom                       | Tipe Data |
-|----|-----------------------------|-----------|
-| 1  | hotel                       | object    |
-| 2  | lead_time                   | int64     |
-| 3  | arrival_date_year           | int64     |
-| 4  | arrival_date_month          | object    |
-| 5  | arrival_date_week_number    | int64     |
-| 6  | arrival_date_day_of_month   | int64     |
-| 7  | stays_in_weekend_nights     | int64     |
-| 8  | stays_in_week_nights        | int64     |
-| 9  | meal                        | object    |
-|10  | market_segment              | object    |
-|11  | customer_type               | object    |
-|12  | adr                         | float64   |
+**4. Market Segment**
+Distribusi segmen pasar menunjukkan bagaimana tamu memesan hotel:
+- **Online Travel Agent (OTA)** mendominasi dengan **56.477** sampel (**47,30%**), menunjukkan tren pemesanan hotel melalui platform digital.
+- Diikuti oleh **Offline TA/TO (20,29%)**, **Groups (16,59%)**, dan **Direct booking (10,56%)**.
+- Segmen **Corporate**, **Complementary**, dan **Aviation** memiliki proporsi sangat kecil, mengindikasikan pasar yang lebih spesifik atau terbatas.
 
 ---
 
-**Kolom yang Dihapus dan Alasannya**
+![image](https://github.com/user-attachments/assets/8e592f91-1d41-4175-934d-865eb0c49bb5)
+
+**5. Customer Type**
+Tipe pelanggan yang paling dominan adalah:
+- **Transient** sebanyak **89.613** sampel (**75,06%**) – pelanggan individu yang menginap untuk waktu singkat dan tidak dalam grup atau kontrak.
+- Diikuti oleh **Transient-Party (21,04%)**, yaitu tamu perorangan yang bepergian dalam kelompok kecil.
+- **Contract (3,41%)** dan **Group (0,48%)** menunjukkan porsi yang lebih kecil, menggambarkan segmen pelanggan dengan kontrak perusahaan atau perjalanan grup.
+
+## Data Preparation
+Menghapus Data duplikat 
+
+![image](https://github.com/user-attachments/assets/c4375b23-c2a9-47ea-a913-73afd23ae119)
+
+Berdasarkan output diatas data duplikat berhasil dihapus
+
+**Menghapus beberapa kolom yang tidak relevan**
+
+![image](https://github.com/user-attachments/assets/dccb4fbf-22fa-450c-9176-50fdc053357a)
 
 Berikut adalah kolom-kolom yang dianggap tidak relevan untuk analisis fokus **waktu pemesanan dan durasi menginap terhadap harga**:
 
@@ -273,8 +258,25 @@ Berikut adalah kolom-kolom yang dianggap tidak relevan untuk analisis fokus **wa
 | total_of_special_requests     | Sama seperti di atas. |
 
 ---
+**Struktur Data Setelah Menghapus Kolom Tidak Relevan**
 
-**Total Data Setelah Pembersihan:**
+| No. | Kolom                      | Tipe Data | Jumlah Non-Null | Deskripsi (Opsional)                    |
+|-----|----------------------------|-----------|------------------|-----------------------------------------|
+| 1   | hotel                      | object    | 87396            | Nama hotel                              |
+| 2   | lead_time                  | int64     | 87396            | Waktu tunggu sebelum check-in (hari)    |
+| 3   | arrival_date_year          | int64     | 87396            | Tahun kedatangan                        |
+| 4   | arrival_date_month         | object    | 87396            | Bulan kedatangan                        |
+| 5   | arrival_date_week_number   | int64     | 87396            | Nomor minggu kedatangan                 |
+| 6   | arrival_date_day_of_month  | int64     | 87396            | Tanggal kedatangan                      |
+| 7   | stays_in_weekend_nights    | int64     | 87396            | Lama menginap saat akhir pekan (malam)  |
+| 8   | stays_in_week_nights       | int64     | 87396            | Lama menginap saat hari kerja (malam)   |
+| 9   | meal                       | object    | 87396            | Jenis makanan yang dipesan              |
+| 10  | market_segment             | object    | 87396            | Segmen pasar dari tamu                  |
+| 11  | customer_type              | object    | 87396            | Tipe pelanggan                          |
+| 12  | adr                        | float64   | 87396            | Rata-rata harga per kamar per hari (ADR)|
+
+
+**Total Data Setelah Pembersihan dan Penghapusan Kolom:**
 
 **Ukuran DataFrame:** `(87396, 12)`
 
@@ -293,196 +295,33 @@ Total data setelah penghapusan outlier:
 |--------------|--------------|
 | 81186        | 12           |
 
-### Exploratory Data Analysis - Univariate Analysis
-- Analisis univariat adalah jenis analisis statistik yang mengamati dan menjelaskan satu variabel pada suatu waktu. Tujuannya adalah untuk mendeskripsikan data tersebut, meringkasnya, dan mencari pola-pola yang ada dalam satu variabel tersebut.
 
-**Fitur kategori**
-  
-![image](https://github.com/user-attachments/assets/69ae2924-d2d6-48c3-933b-4a0e9d2ffba5)
+### Pembuatan Fitur Tambahan dan Pemeriksaan Missing Values
 
+Pada tahap ini, dilakukan pembuatan dua fitur baru, yaitu `total_stay` dan `total_cost`.  
+- Fitur `total_stay` dihitung dari penjumlahan antara jumlah malam akhir pekan (`stays_in_weekend_nights`) dan jumlah malam hari kerja (`stays_in_week_nights`).  
+- Fitur `total_cost` merupakan hasil perkalian antara `adr` (average daily rate) dengan `total_stay`.
 
-**hotel**                                      
-- City Hotel            53428           61.13
-- Resort Hotel          33968           38.87
+![image](https://github.com/user-attachments/assets/b89a3803-ac73-4e63-bcee-5ba2960b2820)
 
-![image](https://github.com/user-attachments/assets/0b0bece8-8d35-4825-9bb4-f7b3b2b0e4da)
+Setelah kedua fitur tersebut dibuat, dilakukan pengecekan terhadap missing values untuk memastikan tidak ada data yang hilang pada kolom-kolom yang relevan, khususnya kolom yang baru ditambahkan. Hasil output menunjukkan bahwa tidak ditemukan nilai kosong (missing values) pada kolom `adr`, `lead_time`, `arrival_date_month`, `market_segment`, `total_stay`, maupun `total_cost`. Ini memastikan bahwa data siap untuk digunakan dalam analisis lanjutan atau pemodelan prediktif.
 
+**Penanganan Outlier**
 
-**arrival_date_month**                            
-- August                      11257           12.88
-- July                        10057           11.51
-- May                          8355            9.56
-- April                        7908            9.05
-- June                         7765            8.88
-- March                        7513            8.60
-- October                      6934            7.93
-- September                    6690            7.65
-- February                     6098            6.98
-- December                     5131            5.87
-- November                     4995            5.72
-- January                      4693            5.37
+![image](https://github.com/user-attachments/assets/80f2421e-441d-4176-a671-0cf9e837179d)
 
+Total data setelah penghapusan outlier : **59891**
 
-![image](https://github.com/user-attachments/assets/9f622ffc-f1ef-4f24-a9a5-fb531b4d2d93)
 
-
-**meal**                                    
-- BB                 67978           77.78
-- SC                  9481           10.85
-- HB                  9085           10.40
-- Undefined            492            0.56
-- FB                   360            0.41
-
-![image](https://github.com/user-attachments/assets/373ee402-bf1d-420c-8d40-a68520271a37)
-
-**market_segment**                               
-- Online TA               51618           59.06
-- Offline TA/TO           13889           15.89
-- Direct                  11804           13.51
-- Groups                   4942            5.65
-- Corporate                4212            4.82
-- Complementary             702            0.80
-- Aviation                  227            0.26
-- Undefined                   2            0.00
-
-![image](https://github.com/user-attachments/assets/83ae2507-de4f-424a-a7d3-10b8eeeda664)
-
-**customer_type**                                 
-- Transient                71986           82.37
-- Transient-Party          11727           13.42
-- Contract                  3139            3.59
-- Group                      544            0.62
-
-**Fitur Numerik**
-
-![image](https://github.com/user-attachments/assets/6ede20c0-74c1-4ed2-95a6-a2d3cd533c60)
-Dari beberapa visualisasi diatas dapat disimpulkan sebagai berikut:
-
-**Lead Time**
-- Histogram `lead_time` menunjukkan mayoritas pemesanan dilakukan dalam waktu kurang dari 50 hari sebelum kedatangan.
-- Distribusinya **right-skewed**, menandakan ada sebagian kecil tamu yang memesan jauh-jauh hari.
-
-**Tahun Kedatangan**
-- Fitur `arrival_date_year` menunjukkan jumlah tertinggi pada tahun **2016**, menandakan data tahun tersebut paling dominan dalam dataset.
-
-**Distribusi Kedatangan**
-- Fitur `arrival_date_week_number` dan `arrival_date_day_of_month` menunjukkan variasi kedatangan tamu yang cukup **merata** sepanjang minggu dan bulan.
-- Namun, minggu ke-**28** menunjukkan **lonjakan signifikan**—kemungkinan karena libur musim panas atau event khusus.
-
-**Durasi Menginap**
-- Fitur `stays_in_week_nights` dan `stays_in_weekend_nights` didominasi oleh nilai **1 dan 2 malam**.
-- Menandakan sebagian besar tamu **tidak tinggal terlalu lama**.
-
-**Distribusi Harga per Malam (`adr`)**
-- Distribusi `adr` **cukup normal** dengan rata-rata sekitar **100**, namun memiliki **ekor kanan (right-skewed)**.
-- Beberapa nilai `adr` sangat tinggi (di atas **200**), kemungkinan merupakan **outlier** atau pemesanan dalam kondisi spesial seperti **event atau high season**.
-
-### Exploratory Data Analysis - Multivariate Analysis
-**Fitur Numerik**
-![image](https://github.com/user-attachments/assets/ff75dfdd-5100-4aa6-bc16-2e99cca94970)
-Berdasarkan hasil visualisasi matriks korelasi yang ditampilkan, diperoleh beberapa hubungan penting antar fitur numerik sebagai berikut:
-
-- Korelasi Tinggi antar Fitur Terkait Durasi Inap
-
-  stays_in_week_nights dan total_stay memiliki korelasi sangat kuat (0.92), menunjukkan bahwa jumlah malam di hari kerja adalah komponen utama dari total durasi inap.
-
-  stays_in_weekend_nights dan total_stay juga menunjukkan korelasi yang tinggi sebesar 0.71, yang berarti malam akhir pekan juga memberikan kontribusi signifikan terhadap durasi total menginap.
-
-- Korelasi Lead Time
-
-  lead_time menunjukkan korelasi sedang dengan total_stay (0.38) dan stays_in_week_nights (0.36). Ini mengindikasikan bahwa pemesanan yang dilakukan jauh hari sebelumnya cenderung dikaitkan dengan masa inap yang lebih lama, terutama pada hari kerja.
-
-  Korelasi lead_time terhadap adr (harga per malam) rendah (0.08), yang menunjukkan bahwa waktu pemesanan tidak banyak memengaruhi harga per malam secara langsung.
-
-- Fitur adr (Average Daily Rate)
-
-  adr memiliki korelasi sangat rendah dengan semua fitur lain, termasuk total_stay (0.10) dan lead_time (0.08). Ini menandakan bahwa rata-rata harga per malam kemungkinan besar lebih dipengaruhi oleh variabel non-numerik seperti tipe kamar, jenis pelanggan, musim, atau status reservasi.
-
-- Tanggal Kedatangan
-
-  Fitur-fitur yang berkaitan dengan tanggal kedatangan seperti arrival_date_year, arrival_date_week_number, dan arrival_date_day_of_month memiliki korelasi rendah terhadap fitur lainnya, termasuk adr dan total_stay. Hal ini mengindikasikan bahwa tidak terdapat pola linier kuat antara tanggal kedatangan dengan fitur numerik lainnya.
-
-- Korelasi Negatif
-
-  Satu-satunya korelasi negatif yang mencolok adalah antara arrival_date_year dan arrival_date_week_number (-0.53). Ini dapat mencerminkan distribusi data berdasarkan waktu, misalnya lebih banyak pemesanan di minggu-minggu tertentu pada tahun-tahun tertentu.
-
-![image](https://github.com/user-attachments/assets/22abc74f-6876-45ed-a9be-3abc7bc1d546)
-- Membuat kolom baru dan mengecek apakah ada missing values, dari hasil output diatas tidak ada missing values pada kolom yang baru dibuat yaitu total_stay, total_cost
-
-![image](https://github.com/user-attachments/assets/d97b242c-a85f-4cc9-b543-82163031cb3f)
-- Mengecek dan menghapus outlier pada fitur yang baru dibuat dengan total data setelah penghapusan outlier **59891**
-
-![image](https://github.com/user-attachments/assets/9ea9e3ec-6295-4aae-948e-287b87abcf2e)
-Dari hasil visualisasi tersebut dapat disimpulkan:
-
-- Harga rata-rata harian (ADR) bervariasi setiap bulan dan berbeda antar segmen pasar.
-
-- Segmen Direct dan Online TA cenderung memiliki ADR lebih tinggi dibanding segmen lain hampir di seluruh bulan.
-
-- ADR tertinggi terjadi di bulan Juli, Agustus, September, menunjukkan musim puncak atau permintaan tinggi.
-
-- Bulan Januari dan Februari memiliki ADR paling rendah, menandakan musim sepi atau penurunan permintaan.
-
-- Segmen Complementary memiliki ADR paling rendah secara konsisten.
-
-- Pola musiman ini penting untuk strategi penetapan harga dan promosi sesuai segmen pasar dan waktu kedatangan tamu.
-
-![image](https://github.com/user-attachments/assets/7f06f039-c23b-45ac-847e-b5c84b7d02dc)
-
-Dari visualisasi tersebut dapat dijelaskan:
-
-- Plot menunjukkan hubungan antara Lead Time (jumlah hari sebelum kedatangan) dengan Harga Harian Rata-rata (ADR).
-
-- Sebagian besar reservasi dilakukan dengan Lead Time rendah (konsentrasi data di dekat 0 hari).
-
-- Garis tren (merah) memperlihatkan pola naik dulu sedikit lalu menurun setelah Lead Time sekitar 100-150 hari.
-
-- Artinya, harga ADR cenderung sedikit meningkat jika reservasi dilakukan dengan Lead Time sedang, tetapi menurun untuk Lead Time yang sangat lama.
-
-- Pola ini bisa berarti bahwa booking dengan waktu terlalu lama sebelum kedatangan cenderung mendapatkan harga lebih rendah, mungkin karena promosi awal atau strategi diskon.
-
-- Namun, hubungan ini tidak terlalu kuat, terlihat dari penyebaran titik data yang cukup lebar.
-
-Singkatnya, ada kecenderungan ADR naik dulu lalu turun seiring bertambahnya Lead Time, tapi dengan variasi harga yang besar di setiap rentang waktu.
-
-![image](https://github.com/user-attachments/assets/1215bab4-a9a2-4511-a5f0-5910da522323)
-Dari visualisasi tersebut dapat dijelaskan:
-
-- Titik-titik biru mewakili data individual dari setiap reservasi.
-
-- Garis merah menunjukkan rata-rata total biaya untuk setiap lama menginap.
-
-- Terlihat tren bahwa semakin lama menginap, total biaya rata-rata semakin meningkat, yang masuk akal karena biaya dihitung berdasarkan harga per malam dikalikan jumlah malam menginap.
-
-- Namun, kenaikan total biaya mulai melambat setelah lama menginap 4-6 malam, terlihat dari kemiringan garis rata-rata yang mulai mendatar.
-
-- Hal ini bisa mengindikasikan adanya diskon atau harga yang lebih rendah per malam jika menginap lebih lama (efek tarif diskon untuk masa inap panjang).
-
-- Ada juga variasi besar pada total biaya dalam tiap kategori lama menginap, menunjukkan harga per malam yang bervariasi antar reservasi.
-
-Singkatnya, total biaya meningkat seiring lama menginap, namun kenaikan biaya tidak selalu linear, bisa ada penyesuaian harga untuk lama menginap yang lebih panjang.
-
-**Fitur Kategorik**
-![image](https://github.com/user-attachments/assets/94719373-3677-445a-a68d-c3983f411b78)
-Visualisasi tersebut menunjukkan rata-rata harga harian (ADR) hotel per bulan berdasarkan jenis hotel (City Hotel vs Resort Hotel).
-
-- City Hotel cenderung memiliki ADR yang stabil dan lebih tinggi dari Resort Hotel pada sebagian besar bulan, terutama di bulan-bulan non-musim liburan.
-
-- Resort Hotel menunjukkan kenaikan tajam ADR di bulan Juni–Agustus, dengan puncaknya di Agustus (mencapai lebih dari 140), yang kemungkinan besar disebabkan oleh musim liburan atau peak season.
-
-- Setelah Agustus, ADR Resort Hotel turun drastis, kembali lebih rendah dari City Hotel.
-
-- Hal ini menunjukkan bahwa City Hotel lebih stabil sepanjang tahun, sementara Resort Hotel sangat dipengaruhi oleh musim liburan.
-
-Kesimpulan:
-
-- Untuk mencari harga terbaik di Resort Hotel, hindari musim liburan (Juli–Agustus).
-
-- Untuk City Hotel, fluktuasi harga tidak terlalu besar, lebih cocok untuk perjalanan bisnis yang fleksibel.
 
 **Encoding Fitur Kategori**
 - Fitur customer_type diubah menjadi format numerik menggunakan LabelEncoder karena model machine learning tidak bisa memproses data kategorikal dalam bentuk string. Setiap jenis pelanggan dikonversi menjadi angka (misal: Contract → 0, Group → 1, dst.) agar bisa digunakan dalam pelatihan model.
+  
+![image](https://github.com/user-attachments/assets/52198076-706c-4017-98df-889f9481ca53)
+
 - Fitur-fitur kategorikal non-ordinal seperti `hotel`, `meal`, `market_segment`, dan `arrival_date_month` diubah menggunakan *One-Hot Encoding* karena tidak memiliki urutan nilai yang bermakna. Dengan `pd.get_dummies()`, setiap kategori dibuat menjadi kolom biner (0 atau 1), sehingga informasi kategori tetap dipertahankan tanpa memberikan bobot urutan yang salah. Hasilnya disimpan dalam `df_final` dan siap digunakan untuk pelatihan model.
+
+![image](https://github.com/user-attachments/assets/e1b7ee46-70ef-4dd1-947d-5f02addff8b5)
 
 Fitur kategorikal perlu diubah karena model machine learning hanya dapat memproses data numerik. Jika tidak diubah, nilai kategori dalam bentuk teks tidak akan bisa dikenali atau digunakan dalam proses pelatihan model.
 
@@ -490,12 +329,8 @@ Fitur kategorikal perlu diubah karena model machine learning hanya dapat mempros
 
 teknik PCA digunakan untuk mereduksi variabel asli menjadi sejumlah kecil variabel baru yang tidak berkorelasi linier, disebut komponen utama (PC). Komponen utama ini dapat menangkap sebagian besar varians dalam variabel asli. Sehingga, saat teknik PCA diterapkan pada data, ia hanya akan menggunakan komponen utama dan mengabaikan sisanya.
 
-![image](https://github.com/user-attachments/assets/1de98b5b-e9ab-47c0-9218-71f30a5c7055)
+![image](https://github.com/user-attachments/assets/c2e3f322-a4de-493c-82cf-33521cf80f5e)
 
-Visualisasi tersebut menunjukkan korelasi antara komponen hasil PCA dan variabel target (adr dan total_cost). Berikut poin-poin pentingnya:
-- stay_combined memiliki korelasi kuat positif (0.76) terhadap total_cost, artinya semakin lama menginap, biaya total semakin tinggi.
-- market_segment_pca memiliki korelasi moderat terhadap adr (0.27) dan total_cost (0.24), menunjukkan bahwa tipe segmentasi pasar berpengaruh terhadap harga dan biaya.
-- Komponen lain seperti arrival_month_pca dan meal_pca memiliki korelasi yang lemah, sehingga pengaruhnya terhadap adr dan total_cost relatif kecil.
 
 **Train-Test-Split**
 
@@ -509,6 +344,9 @@ Untuk prediksi harga hotel (`adr`), dari total dataset, data terbagi menjadi 80%
 - Data latih `X_train_adr` dan `y_train_adr` berisi fitur dan label untuk melatih model.
 - Data uji `X_test_adr` dan `y_test_adr` berisi fitur dan label untuk menguji performa model.
 Hal yang sama juga dilakukan untuk target kedua yaitu total biaya menginap (`total_cost`), dengan pembagian data latih dan uji yang serupa.
+
+![image](https://github.com/user-attachments/assets/08728870-b876-49e8-aa8b-1c45421488ec)
+
 
 **Standarisasi Data**
 
@@ -537,6 +375,9 @@ Standarisasi dilakukan secara **terpisah** untuk dua target prediksi:
 
 Proses **MinMaxScaler** menghasilkan distribusi data dengan rentang nilai antara **0 dan 1**, membuat algoritma machine learning lebih efisien dalam proses pelatihan.
 
+![image](https://github.com/user-attachments/assets/1da04178-3329-4210-8f25-09a44ea6a842)
+
+
 **Jadi, mengapa perlu dilakukan data preparation?**
 
 - **Encoding** diperlukan untuk mengubah data kategori menjadi format numerik, karena sebagian besar algoritma machine learning tidak dapat bekerja langsung dengan data non-numerik.
@@ -548,24 +389,60 @@ Proses **MinMaxScaler** menghasilkan distribusi data dengan rentang nilai antara
 - **Standarisasi** memastikan fitur berada pada skala yang sama, meningkatkan efisiensi dan efektivitas algoritma dalam menemukan pola dalam data.
 
 ## Modeling
-**XGBoost MultiOutputRegressor**
-Untuk memprediksi dua target sekaligus, yaitu adr (Average Daily Rate) dan total_cost, digunakan MultiOutputRegressor yang membungkus model dasar XGBRegressor. Pendekatan ini memungkinkan model melakukan regresi multi-target secara bersamaan.
-
-- Data fitur (X) dan target (adr dan total_cost) dipisah menjadi data latih dan uji menggunakan train_test_split.
-- Model kemudian dilatih (fit) pada data latih dengan dua target output secara paralel.
-- Model ini memanfaatkan kekuatan XGBoost yang efisien dan akurat untuk regresi pada masing-masing target secara independen dalam satu pipeline.
-
 **Model Multi-Output Regression dengan Random Forest**
 Tahapan yang dilakukan:
-- Definisi Model Dasar
-Model regresi berbasis Random Forest dibuat dengan RandomForestRegressor(random_state=42) untuk menjaga hasil yang reproducible.
-- Pembungkusan untuk Multi-Output
-Karena target yang ingin diprediksi ada dua (adr dan total_cost), model dasar dibungkus dengan MultiOutputRegressor agar bisa menangani regresi multi-output secara paralel.
-- Persiapan Data
-Data fitur (X) dan target multi-output (y_multi dengan kolom adr dan total_cost) dipisah menjadi data latih dan data uji menggunakan train_test_split dengan porsi 80% latih dan 20% uji.
-- Pelatihan Model
-Model multi-output dilatih dengan data latih menggunakan fit(), sehingga model belajar memprediksi kedua target secara bersamaan.
+| Parameter           | Nilai    | Fungsi                                                                                                                                                                                                               |
+| ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `n_estimators`      | `100`    | Jumlah pohon keputusan dalam hutan (*forest*). Semakin banyak pohon, prediksi cenderung lebih stabil, namun komputasi menjadi lebih lambat.                                                                          |
+| `max_depth`         | `None`   | Tidak ada batasan kedalaman pohon. Pohon akan tumbuh hingga semua daun murni (*pure leaves*). Tanpa batasan ini bisa menyebabkan *overfitting*.                                                                      |
+| `min_samples_split` | `2`      | Minimum jumlah sampel yang dibutuhkan untuk memisahkan sebuah *node*. Nilai yang lebih besar dapat mencegah pohon menjadi terlalu kompleks.                                                                          |
+| `min_samples_leaf`  | `1`      | Minimum jumlah sampel yang harus ada di daun pohon. Nilai lebih besar membantu menciptakan pohon yang lebih seimbang dan mampu melakukan generalisasi dengan lebih baik.                                             |
+| `max_features`      | `'sqrt'` | Jumlah fitur maksimum yang dipertimbangkan saat membuat split. `'sqrt'` artinya akar dari jumlah total fitur. Strategi ini membantu menghasilkan pohon yang lebih beragam, sehingga mengurangi korelasi antar pohon. |
+| `random_state`      | `42`     | Seed untuk keacakan, digunakan agar model menghasilkan output yang sama setiap kali dijalankan (reproducibility).                                                                                                    |
 
+**Kelebihan**
+- Bisa memprediksi banyak target sekaligus (multi-output).
+- Random Forest kuat terhadap overfitting dan noise.
+- Tidak perlu normalisasi fitur.
+- Proses pelatihan bisa paralel.
+
+**Kekurangan**
+- Tidak menangkap hubungan antar target.
+- Boros memori dan waktu untuk data besar.
+- Kurang interpretatif.
+- Kurang optimal jika target sangat saling terkait.
+
+**XGBoost MultiOutputRegressor**
+
+Berikut adalah parameter default yang digunakan saat XGBRegressor(random_state=42):
+
+| Parameter          | Nilai                          | Fungsi                                                                                                                                  |
+| ------------------ | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `objective`        | `'reg:squarederror'` (default) | Fungsi loss untuk regresi, yaitu **mean squared error (MSE)**.                                                                          |
+| `n_estimators`     | `100` (default)                | Jumlah pohon (trees) yang akan dibangun. <br>Lebih banyak pohon = prediksi lebih stabil, tapi komputasi meningkat.                      |
+| `max_depth`        | `6` (default)                  | Kedalaman maksimum tiap pohon. <br>Mengontrol kompleksitas model. <br>Lebih besar = lebih kompleks, berisiko overfitting.               |
+| `learning_rate`    | `0.3` (default)                | Menentukan seberapa besar setiap pohon berkontribusi terhadap prediksi akhir. <br>Nilai kecil = model belajar lebih lambat tapi stabil. |
+| `subsample`        | `1.0` (default)                | Persentase sampel yang digunakan untuk melatih setiap pohon. <br>Nilai < 1.0 → membantu mengurangi overfitting.                         |
+| `colsample_bytree` | `1.0` (default)                | Proporsi fitur yang dipakai dalam tiap pohon. <br>Mirip dengan `max_features` di Random Forest.                                         |
+| `reg_alpha`        | `0` (default)                  | Regularisasi L1 (Lasso). Membantu mengurangi overfitting.                                                                               |
+| `reg_lambda`       | `1` (default)                  | Regularisasi L2 (Ridge). Membantu menjaga bobot tetap kecil dan mencegah overfitting.                                                   |
+| `random_state`     | `42`                           | Menjamin hasil yang **reproducible** (konsisten saat dijalankan ulang).                                                                 |
+| `n_jobs`           | `None` (default)               | Menentukan jumlah core CPU yang digunakan. `None` artinya otomatis pakai semua.                                                         |
+| `verbosity`        | `1` (default)                  | Kontrol log yang ditampilkan. 0 = silent, 1 = warning, 2 = info, 3 = debug.                                                             |
+
+
+**Kelebihan**
+- **Akurat dan Efisien**: XGBoost dikenal sebagai salah satu algoritma boosting paling akurat dan cepat.
+- **Mampu Menangani Banyak Target**: MultiOutputRegressor memungkinkan prediksi multi-output seperti `adr` dan `total_cost`.
+- **Tahan terhadap Overfitting**: Dilengkapi dengan regularisasi L1 dan L2.
+- **Fleksibel**: Banyak parameter yang bisa diatur untuk meningkatkan performa.
+- **Tidak Perlu Normalisasi**: Seperti Random Forest, XGBoost tidak membutuhkan skala fitur.
+
+**Kekurangan**
+- **Tidak Menangkap Hubungan Antar Target**: Setiap target diprediksi oleh model terpisah, tanpa mempertimbangkan korelasi antar target.
+- **Konsumsi Memori dan Komputasi Tinggi**: Terutama saat menggunakan banyak estimator dan fitur.
+- **Parameter Tuning Kompleks**: Memiliki banyak hyperparameter, butuh waktu untuk optimasi.
+- **Kurang Interpretatif**: Sulit menjelaskan alasan di balik setiap prediksi.
 
 
 ## Evaluation
@@ -588,32 +465,40 @@ Rumus MSE dapat dilihat pada gambar di atas, dengan penjelasan sebagai berikut:
 | RF          |        283.658147 |      1519.951410 |
 | boosting_RF |       1227.285113 |      1513.729068 |
 
-![image](https://github.com/user-attachments/assets/a07b1841-0ba8-410b-96db-e5bacfc05668)
+![image](https://github.com/user-attachments/assets/01789a4b-bc63-4e8f-b900-420c1f723fcf)
 
 | y_true_adr | y_true_cost | prediksi_RF_adr | prediksi_RF_cost | prediksi_XGB_adr | prediksi_XGB_cost |
-|------------|-------------|------------------|-------------------|-------------------|--------------------|
-| 145.87     | 437.61      | 154.2            | 460.3             | 136.300003        | 392.500000         |
-| 108.20     | 216.40      | 91.4             | 218.5             | 99.199997         | 205.199997         |
-| 152.10     | 608.40      | 131.4            | 533.8             | 129.899994        | 506.700012         |
-| 156.67     | 470.01      | 136.7            | 407.5             | 145.000000        | 453.100006         |
-| 58.00      | 174.00      | 51.6             | 151.4             | 46.900002         | 140.899994         |
+|------------|--------------|------------------|-------------------|-------------------|--------------------|
+| 145.87     | 437.61       | 153.4            | 452.8             | 136.30            | 392.50             |
+| 108.20     | 216.40       | 90.5             | 194.4             | 99.20             | 205.20             |
+| 152.10     | 608.40       | 135.0            | 548.8             | 129.90            | 506.70             |
+| 156.67     | 470.01       | 132.5            | 400.3             | 145.00            | 453.10             |
+| 58.00      | 174.00       | 47.6             | 202.1             | 46.90             | 140.90             |
 
-Dari tabel di atas, dapat dilihat bahwa setiap model memberikan hasil prediksi yang berbeda untuk nilai aktual adr dan total_cost. Model Random Forest dan XGBoost menunjukkan kemampuan yang cukup baik dalam memperkirakan kedua target tersebut.
 
-Misalnya, pada baris pertama, nilai aktual adr adalah 145.87, sementara prediksi dari Random Forest adalah 154.2 dan XGBoost 136.3. Ini menunjukkan bahwa kedua model memiliki deviasi prediksi yang masih dalam batas wajar. Untuk total_cost, nilai aktualnya 437.61, dan hasil prediksi dari Random Forest adalah 460.3, sedangkan XGBoost memprediksi 392.5.
+Dari tabel di atas, dapat dilihat bahwa setiap model memberikan hasil prediksi yang berbeda terhadap nilai aktual untuk `adr` (Average Daily Rate) dan `total_cost`. Secara umum, baik model **Random Forest** maupun **XGBoost** menunjukkan performa prediktif yang cukup baik dan stabil.
 
-Secara umum, model Random Forest cenderung sedikit overestimasi, sedangkan model XGBoost cenderung underestimasi pada beberapa kasus, tetapi selisihnya tidak terlalu signifikan, yang menunjukkan performa prediktif yang stabil. Konsistensi model ini menunjukkan bahwa hubungan antara fitur-fitur seperti waktu kedatangan, durasi inap, jenis hotel, dan jumlah tamu berhasil ditangkap oleh model dengan baik.
+Sebagai contoh:
+- Pada baris pertama, nilai aktual `adr` adalah **145.87**, sementara prediksi dari Random Forest adalah **153.4** dan XGBoost adalah **136.30**. Perbedaan ini menunjukkan deviasi yang masih dalam batas wajar.
+- Untuk `total_cost` pada baris yang sama, nilai aktualnya adalah **437.61**, dengan prediksi dari Random Forest sebesar **452.8** dan dari XGBoost sebesar **392.50**.
 
-**Kesimpulan**
+Secara umum, dapat diamati bahwa:
 
-Dari hasil analisis dan evaluasi yang telah dilakukan, dapat disimpulkan bahwa model yang dikembangkan berhasil menjawab dua rumusan masalah utama secara efektif:
+- **Model Random Forest** cenderung melakukan sedikit *overestimasi* terhadap nilai aktual.
+- **Model XGBoost** pada beberapa kasus tampak sedikit *underestimasi*.
+- Namun, selisih keduanya tidak terlalu signifikan, yang menunjukkan bahwa hubungan antara fitur-fitur seperti waktu kedatangan, lama inap, dan tipe segmen pelanggan telah berhasil dipelajari oleh kedua model.
 
-Kapan waktu terbaik untuk memesan hotel agar mendapatkan harga terbaik?
-Berdasarkan analisis multivariat dan evaluasi model, ditemukan bahwa faktor waktu kedatangan (diwakili oleh komponen PCA dari bulan kedatangan) memiliki pengaruh terhadap harga kamar per malam (adr). Korelasi negatif antara arrival_month_pca dan adr menunjukkan bahwa pemesanan hotel pada bulan-bulan tertentu, seperti Januari, Februari, atau November (yang cenderung merupakan musim sepi), dapat memberikan harga lebih murah. Oleh karena itu, waktu terbaik untuk memesan hotel adalah di luar musim liburan atau high season.
+---
 
-Berapa lama idealnya menginap untuk mengoptimalkan biaya?
-Durasi inap, yang direpresentasikan sebagai stay_combined, memiliki korelasi sangat tinggi terhadap total_cost, namun tidak terlalu memengaruhi adr. Artinya, semakin lama menginap, semakin besar total biaya, namun harga per malam tidak mengalami penurunan signifikan. Maka, durasi ideal menginap adalah sekitar 2 hingga 4 malam, di mana biaya masih dalam batas efisien, dan pengalaman menginap tetap optimal.
+### Kesimpulan
 
+Dari hasil analisis dan evaluasi model, dapat disimpulkan bahwa pendekatan ini berhasil menjawab dua rumusan masalah utama secara efektif:
+
+1. **Kapan waktu terbaik untuk memesan hotel agar mendapatkan harga terbaik?**  
+   Berdasarkan hasil PCA dan evaluasi model, ditemukan bahwa komponen waktu kedatangan (`arrival_date_month`) berpengaruh terhadap `adr`. Korelasi negatif menunjukkan bahwa harga cenderung lebih rendah pada bulan-bulan sepi seperti **Januari**, **Februari**, dan **November**, yang merupakan *low season*. Maka, waktu terbaik untuk memesan hotel adalah **di luar musim liburan** untuk mendapatkan tarif kamar yang lebih rendah.
+
+2. **Berapa lama idealnya menginap untuk mengoptimalkan biaya?**  
+   Fitur `total_cost`, yang merupakan hasil perkalian `adr` dengan durasi inap (`total_stay`), menunjukkan bahwa semakin lama durasi, maka total biaya akan meningkat secara linier. Namun, `adr` relatif stabil. Artinya, **tidak ada diskon signifikan untuk masa inap yang lebih lama**. Oleh karena itu, **durasi ideal menginap adalah sekitar 2 hingga 4 malam**, karena biaya tetap efisien sementara kenyamanan dan tujuan perjalanan masih dapat tercapai secara optimal.
 
 
 
